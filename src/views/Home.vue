@@ -1,5 +1,5 @@
 <template>
-  <el-icon-edit></el-icon-edit>
+  <el-icon-edit />
 </template>
 
 <script setup lang='ts'>
