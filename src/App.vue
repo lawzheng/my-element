@@ -15,4 +15,13 @@ svg {
   width: 1em;
   height: 1em;
 }
+
+html,
+body,
+.el-container,
+.el-menu,
+#app {
+  width: 100%;
+  height: 100%
+}
 </style>
