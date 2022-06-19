@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang='ts'>
-import mChooseArea from '../../components/chooseArea/src/index.vue'
+import mChooseArea, { ChooseArea } from '../../components/chooseArea/src/index.vue'
 
-const changeArea = (val: any) => {
+const changeArea = (val: ChooseArea) => {
   console.log(val);
 }
 </script>
