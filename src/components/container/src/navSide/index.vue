@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang='ts'>
-let props = defineProps<{
+defineProps<{
   collapse: boolean
 }>()
 </script>
