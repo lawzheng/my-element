@@ -26,7 +26,7 @@
 
 <script setup lang='ts'>
 import { useSlots, computed } from 'vue'
-import { toElIcon } from '../../../utils/index'
+import { toElIcon } from '@/utils/index'
 const props = defineProps({
   type: {
     type: String,
