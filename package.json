@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "prepare": "husky install",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
-    "pre": "husky install"
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.4",
@@ -15,17 +16,6 @@
     "element-plus": "^2.2.5",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,vue}": [
-      "eslint --fix"
-    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
