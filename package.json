@@ -8,6 +8,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "pre-commit": "lint-staged --config lint-staged.config.js",
     "commit-msg": "commitlint --config commitlint.config.js -e -V"
   },
   "dependencies": {
