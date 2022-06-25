@@ -1,17 +1,28 @@
 <template>
-  <el-badge
-    :value="value"
-    :max="max"
-    :is-dot="isDot"
-    class="badge"
+  <el-popover
+    placement="bottom"
+    :width="300"
+    trigger="click"
   >
-    <component :is="toElIcon(icon)" />
-  </el-badge>
+    <template #default>
+      <slot />
+    </template>
+    <template #reference>
+      <el-badge
+        :value="value"
+        :max="max"
+        :is-dot="isDot"
+        class="badge"
+      >
+        <component :is="toElIcon(icon)" />
+      </el-badge>
+    </template>
+  </el-popover>
 </template>
 
 <script setup lang='ts'>
 import { toElIcon } from '@/utils/index'
-const props = defineProps({
+defineProps({
   icon: {
     type: String,
     default: 'Bell'
