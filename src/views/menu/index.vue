@@ -1,36 +1,94 @@
 <template>
-  <div style="width: 200px;">
+  <div style="width: 200px;display: flex;justify-content: space-between;">
     <m-menu
       :data="data1"
       default-active="3-1"
       :router="false"
+      name="a"
+      index="b"
+      icon="c"
+      children="d"
     >
       1
     </m-menu>
+    <m-infinite-menu
+      :data="data2"
+      default-active="3-1-1-1-1"
+      :router="false"
+      name="a"
+      index="b"
+      icon="c"
+      children="d"
+    />
   </div>
 </template>
 
 <script setup lang='ts'>
 const data1 = [
   {
-    name: '导航1',
-    index: '1',
-    icon: 'document'
+    a: '导航1',
+    b: '1',
+    c: 'Document'
   },
   {
-    name: '导航2',
-    index: '2',
-    icon: 'document'
+    a: '导航2',
+    b: '2',
+    c: 'Document'
   },
   {
-    name: '导航3',
-    index: '3',
-    icon: 'document',
-    children: [
+    a: '导航3',
+    b: '3',
+    c: 'Document',
+    d: [
       {
-        name: '导航3-1',
-        index: '3-1',
-        icon: 'document',
+        a: '导航3-1',
+        b: '3-1',
+        c: 'Document',
+      }
+    ]
+  }
+]
+const data2 = [
+  {
+    a: '导航1',
+    b: '1',
+    c: 'Document'
+  },
+  {
+    a: '导航2',
+    b: '2',
+    c: 'Document'
+  },
+  {
+    a: '导航3',
+    b: '3',
+    c: 'Document',
+    d: [
+      {
+        a: '导航3-1',
+        b: '3-1',
+        c: 'Document',
+        d: [
+          {
+            a: '导航3-1-1',
+            b: '3-1-1',
+            c: 'Document',
+            d: [
+              {
+                a: '导航3-1-1-1',
+                b: '3-1-1-1',
+                c: 'Document',
+                d: [
+                  {
+                    a: '导航3-1-1-1-1',
+                    b: '3-1-1-1-1',
+                    c: 'Document',
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }
