@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 200px;display: flex;justify-content: space-between;">
+  <div style="display: flex;justify-content: space-between;">
     <m-menu
       :data="data1"
       default-active="3-1"
@@ -8,6 +8,7 @@
       index="b"
       icon="c"
       children="d"
+      style="width: 200px"
     >
       1
     </m-menu>
@@ -19,6 +20,7 @@
       index="b"
       icon="c"
       children="d"
+      style="width: 200px"
     />
   </div>
 </template>
