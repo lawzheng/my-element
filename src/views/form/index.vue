@@ -3,14 +3,33 @@
     <m-form
       :options="options"
       label-width="100px"
+      @on-preview="handlePreview"
+      @on-remove="handleRemove"
+      @before-remove="beforeRemove"
+      @on-exceed="handleExceed"
+      @on-success="handleSuccess"
+      @on-error="handleError"
+      @on-progress="onProgress"
+      @on-submit="onSubmit"
     >
-      1
+      <template #uploadArea>
+        <el-button type="primary">
+          Click to upload
+        </el-button>
+      </template>
+      <template #uploadTip>
+        <div class="el-upload__tip">
+          jpg/png files with a size less than 500KB.
+        </div>
+      </template>
     </m-form>
   </div>
 </template>
 
 <script setup lang='ts'>
-import { FormOptions } from '@/components/form/src/types/types';
+import { FormOptions, Submit } from '@/components/form/src/types/types';
+import { ElMessage } from 'element-plus'
+import type { UploadProps } from 'element-plus'
 
 const options: FormOptions[] = [
   {
@@ -148,8 +167,67 @@ const options: FormOptions[] = [
         value: 'not'
       }
     ]
+  },
+  {
+    type: 'upload',
+    label: '上传',
+    prop: 'pic',
+    // rules: [
+    //   {
+    //     required: true,
+    //     message: '上传不能为空',
+    //     trigger: 'blur'
+    //   }
+    // ],
+    uploadAttrs: {
+      action: 'https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15',
+      multiple: true,
+      limit: 3
+    }
   }
 ]
+
+const handleRemove: UploadProps['onRemove'] = (val: any) => {
+  console.log('beforeRemove', val)
+}
+
+const handlePreview: UploadProps['onPreview'] = (val: any) => {
+  console.log('beforeRemove', val)
+}
+
+const handleExceed = (val: any) => {
+  ElMessage.warning(
+    `The limit is 3, you selected ${val.files.length} files this time, add up to ${
+      val.files.length + val.fileList.length
+    } totally`
+  )
+}
+
+const beforeRemove = (val: any) => {
+  console.log('beforeRemove', val)
+}
+
+const handleSuccess = (val: any) => {
+  console.log('handleSuccess', val)
+}
+
+const handleError = () => {
+  console.log('handleError')
+}
+
+const onProgress = () => {
+  console.log('onProgress')
+}
+
+const onSubmit = (val: Submit) => {
+  if (!val.valid) {
+    ElMessage.error('有误')
+    return
+  }
+
+  console.log(val.model)
+}
+
 </script>
 
 <style lang='scss' scoped>

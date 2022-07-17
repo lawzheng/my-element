@@ -83,3 +83,8 @@ export interface FormInstance {
   clearValidate: (props?: string | string[]) => void,
   validateField: (props: string | string[], cb: ValidateFieldCallback) => void,
 }
+
+export interface Submit {
+  valid: boolean;
+  model: any;
+}
