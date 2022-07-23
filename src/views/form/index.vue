@@ -30,8 +30,9 @@
 import { FormOptions, Submit } from '@/components/form/src/types/types';
 import { ElMessage } from 'element-plus'
 import type { UploadProps } from 'element-plus'
+import { ref } from 'vue'
 
-const options: FormOptions[] = [
+const options = ref<FormOptions[]>([
   {
     type: 'input',
     value: '',
@@ -185,7 +186,7 @@ const options: FormOptions[] = [
       limit: 3
     }
   }
-]
+])
 
 const handleRemove: UploadProps['onRemove'] = (val: any) => {
   console.log('beforeRemove', val)
