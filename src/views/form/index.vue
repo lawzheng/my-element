@@ -185,6 +185,20 @@ const options = ref<FormOptions[]>([
       multiple: true,
       limit: 3
     }
+  },
+  {
+    type: 'editor',
+    value: '111',
+    prop: 'desc',
+    label: '描述',
+    placeholder: '请输入描述',
+    rules: [
+      {
+        required: true,
+        message: '描述不能为空',
+        trigger: 'blur'
+      }
+    ]
   }
 ])
 
@@ -226,7 +240,7 @@ const onSubmit = (val: Submit) => {
     return
   }
 
-  console.log(val.model)
+  console.log(val.model.value)
 }
 
 </script>

@@ -11,6 +11,7 @@ specifiers:
   '@vitejs/plugin-vue-jsx': ^2.0.0
   '@vueuse/core': ^8.7.4
   '@wangeditor/editor': ^5.1.12
+  '@wangeditor/editor-for-vue': ^5.1.12
   element-plus: ^2.2.5
   eslint: ^8.17.0
   eslint-plugin-vue: ^9.1.1
@@ -31,6 +32,7 @@ dependencies:
   '@types/lodash': 4.14.182
   '@vueuse/core': 8.9.4_vue@3.2.37
   '@wangeditor/editor': 5.1.12
+  '@wangeditor/editor-for-vue': 5.1.12_kuzr5iu6r5ccaomjkje3x5odt4
   element-plus: 2.2.10_vue@3.2.37
   lodash: 4.17.21
   only-allow: 1.1.1
@@ -1137,6 +1139,16 @@ packages:
       slate: 0.72.8
       slate-history: 0.66.0_slate@0.72.8
       snabbdom: 3.5.1
+    dev: false
+
+  /@wangeditor/editor-for-vue/5.1.12_kuzr5iu6r5ccaomjkje3x5odt4:
+    resolution: {integrity: sha512-0Ds3D8I+xnpNWezAeO7HmPRgTfUxHLMd9JKcIw+QzvSmhC5xUHbpCcLU+KLmeBKTR/zffnS5GQo6qi3GhTMJWQ==}
+    peerDependencies:
+      '@wangeditor/editor': '>=5.1.0'
+      vue: ^3.0.5
+    dependencies:
+      '@wangeditor/editor': 5.1.12
+      vue: 3.2.37
     dev: false
 
   /@wangeditor/editor/5.1.12:

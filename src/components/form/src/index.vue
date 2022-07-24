@@ -13,26 +13,9 @@
       :label="item.label"
       :prop="item.prop"
     >
-      <component
-        v-bind="item.attrs"
-        :is="`el-${item.type}`"
-        v-if="item.type !== 'upload'"
-        v-model="model[item.prop!]"
-        :placeholder="item.placeholder"
-      >
-        <template v-if="item.children?.length">
-          <component
-            v-bind="c.attrs"
-            :is="`el-${c.type}`"
-            v-for="(c, i) in item.children"
-            :key="i"
-            :label="c.label"
-            :value="c.value"
-          />
-        </template>
-      </component>
+      <!-- 上传组件 -->
       <el-upload
-        v-else
+        v-if="item.type === 'upload'"
         v-bind="item.uploadAttrs"
         :on-preview="onPreview"
         :on-remove="onRemove"
@@ -50,6 +33,32 @@
           <slot name="uploadTip" />
         </template>
       </el-upload> 
+      <!-- 富文本 -->
+      <m-editor
+        v-else-if="item.type === 'editor'"
+        ref="editor"
+        v-model:value="model[item.prop!]"
+        :editor-config="editorConfig"
+      />
+      <!-- 其它 -->
+      <component
+        v-bind="item.attrs"
+        :is="`el-${item.type}`"
+        v-else
+        v-model="model[item.prop!]"
+        :placeholder="item.placeholder"
+      >
+        <template v-if="item.children?.length">
+          <component
+            v-bind="c.attrs"
+            :is="`el-${c.type}`"
+            v-for="(c, i) in item.children"
+            :key="i"
+            :label="c.label"
+            :value="c.value"
+          />
+        </template>
+      </component>
     </el-form-item>
     <el-form-item>
       <slot
@@ -75,8 +84,10 @@
 
 <script setup lang='ts'>
 import { ref, PropType, onMounted, watch } from 'vue'
-import { FormOptions, FormInstance, Submit } from './types/types';
+import { FormOptions, FormInstance } from './types/types';
 import cloneDeep from 'lodash/cloneDeep'
+import { IEditorConfig } from '@wangeditor/editor';
+
 const props = defineProps({
   options: {
     type: Array as PropType<FormOptions[]>,
@@ -90,6 +101,8 @@ const props = defineProps({
 const model = ref<any>(null)
 const rules = ref<any>(null)
 const form = ref<FormInstance | null>()
+const editorConfig = ref<IEditorConfig>({} as IEditorConfig)
+const editor = ref()
 
 let emits = defineEmits([
   'on-preview',
@@ -112,10 +125,18 @@ const initForm = () => {
   props.options.map((item: FormOptions) => {
     m[item.prop!] = item.value
     r[item.prop!] = item.rules
+
+    if (item.type === 'editor') {
+      initEditor(item);
+    }
   })
 
   model.value = cloneDeep(m)
   rules.value = cloneDeep(r)
+}
+
+const initEditor = (config: FormOptions) => {
+  editorConfig.value!.placeholder = config.placeholder;
 }
 
 // 上传组件的所有方法
@@ -155,8 +176,19 @@ const onSubmit = () => {
     emits('on-submit', { valid, model })
   })
 }
-const onReset = () => {
+
+const resetFields = () => {
   (form.value as FormInstance).resetFields()
+
+  if (editor.value?.length) {
+    editor.value.forEach((item: any) => {
+      item.reset();
+    });
+  }
+}
+
+const onReset = () => {
+  resetFields()
 }
 
 onMounted(() => {
@@ -166,6 +198,11 @@ onMounted(() => {
 watch(() => props.options, () => {
   initForm()
 }, { deep: true })
+
+defineExpose({
+  resetFields
+})
+
 </script>
 
 <style lang='scss' scoped>
