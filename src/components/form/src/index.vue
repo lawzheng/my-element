@@ -60,7 +60,7 @@
         </template>
       </component>
     </el-form-item>
-    <el-form-item>
+    <el-form-item v-if="showButton">
       <slot
         name="action"
         :form="form"
@@ -96,6 +96,10 @@ const props = defineProps({
   // 用户自定义上传方法
   httpRequest: {
     type: Function
+  },
+  showButton: {
+    type: Boolean,
+    default: true
   }
 })
 const model = ref<any>(null)
@@ -171,8 +175,12 @@ let onExceed = (files: File, fileList: FileList) => {
   emits('on-exceed', { files, fileList })
 }
 
+const validate = () => {
+  return (form.value as FormInstance).validate
+}
+
 const onSubmit = () => {
-  (form.value as FormInstance).validate(valid => {
+  validate()(valid => {
     emits('on-submit', { valid, model })
   })
 }
@@ -191,6 +199,10 @@ const onReset = () => {
   resetFields()
 }
 
+const getFormData = () => {
+  return model.value
+}
+
 onMounted(() => {
   initForm()
 })
@@ -200,7 +212,9 @@ watch(() => props.options, () => {
 }, { deep: true })
 
 defineExpose({
-  resetFields
+  resetFields,
+  validate,
+  getFormData
 })
 
 </script>

@@ -5,7 +5,7 @@
   >
     <slot />
   </el-button>
-  <div class="m--choose-icon-dialog-body-height">
+  <div class="m-choose-icon-dialog-body-height">
     <el-dialog
       v-model="dialogVisible"
       :title="title"

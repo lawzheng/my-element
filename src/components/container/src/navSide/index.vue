@@ -1,22 +1,4 @@
 <template>
-  <!-- <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    :collapse="collapse"
-  >
-    <el-menu-item index="1">
-      <el-icon-menu />
-      <span>首页</span>
-    </el-menu-item>
-    <el-menu-item index="2">
-      <el-icon-menu />
-      <span>图标选择器</span>
-    </el-menu-item>
-    <el-menu-item index="3">
-      <el-icon-menu />
-      <span>趋势标记</span>
-    </el-menu-item>
-  </el-menu> -->
   <m-menu
     :data="data"
     :router="true"
@@ -85,6 +67,11 @@ const data = [
     icon: 'Setting',
     name: '表单',
     index: '/form'
+  },
+  {
+    icon: 'Setting',
+    name: '弹出层表单',
+    index: '/modelForm'
   },
   {
     icon: 'ShoppingBag',

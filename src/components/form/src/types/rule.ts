@@ -38,7 +38,7 @@ export type SyncErrorType = Error | string;
 export type SyncValidateResult = boolean | SyncErrorType | SyncErrorType[];
 export type ValidateResult = void | Promise<void> | SyncValidateResult;
 
-type Trigger = 'blur' | 'focus' | 'input'
+type Trigger = 'blur' | 'focus' | 'input' | 'change'
 
 export interface RuleItem {
   type?: RuleType; // default type is 'string'

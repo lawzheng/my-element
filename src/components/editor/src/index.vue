@@ -8,7 +8,7 @@
     />
     <Editor
       v-model="valueHtml"
-      style="height: 500px; overflow-y: hidden"
+      :style="{height: `${height}px`, 'overflow-y': 'hidden'}"
       :default-config="editorConfig"
       :mode="mode"
       @on-created="handleCreated"
@@ -34,6 +34,10 @@ const props = defineProps({
     type: Object as PropType<IEditorConfig>,
     required: true,
   },
+  height: {
+    type: Number,
+    default: 500
+  }
 });
 
 const emits = defineEmits(['update:value'])
