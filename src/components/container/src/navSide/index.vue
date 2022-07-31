@@ -76,7 +76,7 @@ const data = [
   {
     icon: 'ShoppingBag',
     name: '表格',
-    index: '/grid'
+    index: '/table'
   },
 ]
 </script>
