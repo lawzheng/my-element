@@ -1,6 +1,7 @@
 <template>
   <el-table
     v-loading="isLoading"
+    v-bind="$attrs"
     :data="tableData"
     @row-click="rowClick"
   >
@@ -100,6 +101,21 @@
       </template>
     </el-table-column>
   </el-table>
+  <div
+    v-if="pagination"
+    class="pagination"
+    :style="{justifyContent: paginationAlignJustify}"
+  >
+    <el-pagination
+      :current-page="currentPage"
+      :page-size="pageSize"
+      :page-sizes="pageSizes"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
 </template>
 
 <script setup lang='ts'>
@@ -128,9 +144,33 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  currentPage: {
+    type: Number,
+    default: 1
+  },
+  pageSize: {
+    type: Number,
+    default: 10
+  },
+  pageSizes: {
+    type: Array as PropType<number[]>,
+    default: () => [10, 20, 30, 40]
+  },
+  total: {
+    type: Number,
+    default: 0
+  },
+  pagination: {
+    type: Boolean,
+    default: false
+  },
+  paginationAlign: {
+    type: String as PropType<'left' | 'center' | 'right'>,
+    default: 'left'
+  }
 })
 
-const emits = defineEmits(['check', 'close', 'update:editRowIndex'])
+const emits = defineEmits(['check', 'close', 'update:editRowIndex', 'sizeChange', 'currentChange'])
 
 const currentEdit = ref<string>('')
 
@@ -140,6 +180,11 @@ const cloneEditRowIndex = ref<string>(props.editRowIndex)
 const tableOptions = computed(() => props.options.filter(item => !item.action))
 const actionOptions = computed(() => props.options.find(item => item.action))
 
+const paginationAlignJustify = computed(() => {
+  if (props.paginationAlign === 'left') return 'flex-start'
+  else if (props.paginationAlign === 'center') return 'center'
+  else return 'flex-end'
+})
 
 const handleEdit = (index: number, row: any) => {
   console.log(index, row)
@@ -182,6 +227,13 @@ const rowClick = (row: any, column: any) => {
   }
 }
 
+const handleSizeChange = (val: number) => {
+  emits('sizeChange', val)
+}
+const handleCurrentChange = (val: number) => {
+  emits('currentChange', val)
+}
+
 watch(() => props.data, (val) => {
   tableData.value = cloneDeep(val)
   setEditFlag()
@@ -211,19 +263,25 @@ onMounted(() => {
 .edit-input {
   display: flex;
   align-items: center;
-.icons {
-  display: flex;
-  align-items: center;
-  svg {
-    margin-left: 8px;
-    cursor: pointer;
-  }
-  .check {
-    color: red;
-  }
-  .close {
-    color: green;
+  .icons {
+    display: flex;
+    align-items: center;
+    svg {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+    .check {
+      color: red;
+    }
+    .close {
+      color: green;
+    }
   }
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
 }
 </style>

@@ -2,9 +2,18 @@
   <div>
     <m-table
       v-model:edit-row-index="editRowIndex"
+      border
+      stripe
       :data="tableData"
       :options="options"
       is-edit-row
+      pagination
+      :total="total"
+      :current-page="current"
+      :page-size="pageSize"
+      pagination-align="center"
+      @size-change="sizeChange"
+      @current-change="currentChange"
     >
       <template #date="{scope}">
         <div style="display: flex; align-items: center">
@@ -49,34 +58,15 @@
 
 <script setup lang='ts'>
 import { TableOptions } from '@/components/table/src/types';
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import { totalmem } from 'os';
 
 let tableData = ref<any>([]);
 
-setTimeout(() => {
-  tableData.value = [
-    {
-      date: '2016-05-03',
-      name: 'Tom',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-02',
-      name: 'Tom',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Tom',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Tom',
-      address: 'No. 189, Grove St, Los Angeles',
-    },
-  ]
-}, 1000);
+const current = ref<number>(1)
+const pageSize = ref<number>(10)
+const total = ref<number>(0)
 
 const options: TableOptions[] = [
   {
@@ -113,6 +103,30 @@ const handleEdit = (index: number, row: any) => {
 const handleDelete = (index: number, row: any) => {
   // editRowIndex.value = 'delete'
 }
+
+const sizeChange = (val: number) => {
+  pageSize.value = val
+  getData()
+}
+
+const currentChange = (val: number) => {
+  current.value = val
+  getData()
+}
+
+const getData = () => {
+  axios.post('/api/list', {
+    current: current.value,
+    pageSize: pageSize.value
+  }).then((res: any) => {
+    tableData.value = res.data.data.rows
+    total.value = res.data.data.total
+  })
+}
+
+onMounted(() => {
+  getData()
+})
 </script>
 
 <style lang='scss' scoped>
