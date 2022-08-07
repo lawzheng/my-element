@@ -41,5 +41,8 @@ onMounted(() => {
 </script>
 
 <style lang='scss' scoped>
-
+svg {
+  width: auto;
+  height: auto;
+}
 </style>

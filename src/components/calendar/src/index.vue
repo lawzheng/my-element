@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang='ts'>
+import '@fullcalendar/core/vdom'
 import { Calendar, EventClickArg } from '@fullcalendar/core'
 import daygrid from '@fullcalendar/daygrid'
 import interaction, { DateClickArg } from '@fullcalendar/interaction'
