@@ -60,7 +60,6 @@
 import { TableOptions } from '@/components/table/src/types';
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import { totalmem } from 'os';
 
 let tableData = ref<any>([]);
 

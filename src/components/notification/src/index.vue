@@ -3,6 +3,7 @@
     placement="bottom"
     :width="300"
     trigger="click"
+    popper-class="notification-popper-class"
   >
     <template #default>
       <slot />
@@ -45,5 +46,9 @@ defineProps({
 <style lang='scss' scoped>
 .badge {
   cursor: pointer;
+}
+
+.notification-popper-class {
+  padding: 0!important;
 }
 </style>
