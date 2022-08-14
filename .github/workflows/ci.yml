@@ -3,12 +3,23 @@ name: CI
 #on: [push]
 
 # 在master分支发生push事件时触发。
-on: 
+on:
   push:
     branches:
       - master
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.6.0
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
+            - args: [--global, gulp, prettier, typescript]
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
