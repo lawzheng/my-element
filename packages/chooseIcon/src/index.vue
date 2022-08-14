@@ -18,7 +18,7 @@
           @click="onCopy(item.icon)"
         >
           <div class="text">
-            <component :is="item.icon" />
+            <Component :is="item.icon" />
           </div>
           <div>{{ item.text }}</div>
         </div>

@@ -41,7 +41,7 @@
         :editor-config="editorConfig"
       />
       <!-- 其它 -->
-      <component
+      <Component
         v-bind="item.attrs"
         :is="`el-${item.type}`"
         v-else
@@ -49,7 +49,7 @@
         :placeholder="item.placeholder"
       >
         <template v-if="item.children?.length">
-          <component
+          <Component
             v-bind="c.attrs"
             :is="`el-${c.type}`"
             v-for="(c, i) in item.children"

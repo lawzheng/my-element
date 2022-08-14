@@ -56,7 +56,7 @@
                 v-if="action.icon"
                 class="a-icon"
               >
-                <component :is="toElIcon(action.icon)" />
+                <Component :is="toElIcon(action.icon)" />
               </div>
               <div class="a-text">
                 {{ action.text }}

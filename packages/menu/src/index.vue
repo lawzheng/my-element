@@ -13,7 +13,7 @@
         v-if="!item[children]?.length"
         :index="item[index]"
       >
-        <component
+        <Component
           :is="toElIcon(item[icon])"
           v-if="item[icon]"
         />
@@ -24,7 +24,7 @@
         :index="item[index]"
       >
         <template #title>
-          <component
+          <Component
             :is="toElIcon(item[icon])"
             v-if="item[icon]"
           />
@@ -35,7 +35,7 @@
           :key="index1"
           :index="item1[index]"
         >
-          <component
+          <Component
             :is="toElIcon(item1[icon])"
             v-if="item1[icon]"
           />

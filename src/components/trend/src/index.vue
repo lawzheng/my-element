@@ -10,12 +10,12 @@
       </div>
     </div>
     <div class="icon">
-      <component
+      <Component
         :is="toElIcon(upIcon)"
         v-if="type === 'up'"
         :style="{color: reverseColor ? downIconColor : upIconColor}"
       />
-      <component
+      <Component
         :is="toElIcon(downIcon)"
         v-else
         :style="{color: reverseColor ? upIconColor : downIconColor}"

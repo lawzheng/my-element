@@ -57,7 +57,7 @@
                 :scope="scope"
               />
               <span v-else>{{ scope.row[item.prop!] }}</span>
-              <component
+              <Component
                 :is="toElIcon(editIcon)"
                 v-if="item.editable"
                 class="edit"

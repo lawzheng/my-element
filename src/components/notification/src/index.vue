@@ -15,7 +15,7 @@
         :is-dot="isDot"
         class="badge"
       >
-        <component :is="toElIcon(icon)" />
+        <Component :is="toElIcon(icon)" />
       </el-badge>
     </template>
   </el-popover>
