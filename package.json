@@ -2,6 +2,18 @@
   "name": "my-element",
   "private": true,
   "version": "0.0.0",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/m-element-components.umd.js",
+  "module": "./lib/m-element-components.es.js",
+  "exports": {
+    ".": {
+      "import": "./lib/m-element-components.es.js",
+      "require": "./lib/m-element-components.umd.js"
+    }
+  },
+  "types": "index.d.ts",
   "scripts": {
     "prepare": "husky install",
     "dev": "vite",
@@ -10,7 +22,9 @@
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "pre-commit": "lint-staged --config lint-staged.config.js",
     "commit-msg": "commitlint --config commitlint.config.js -e -V",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "build:components": "node ./command/build.js",
+    "lib": "npm run build:components"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.4",
@@ -31,6 +45,7 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@types/mockjs": "^1.0.6",
+    "@types/node": "^18.7.2",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "@vitejs/plugin-vue": "^3.0.1",
@@ -38,6 +53,7 @@
     "axios": "^0.27.2",
     "eslint": "^8.17.0",
     "eslint-plugin-vue": "^9.1.1",
+    "fs-extra": "^10.1.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "mockjs": "^1.1.0",

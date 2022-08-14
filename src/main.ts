@@ -14,5 +14,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(`el-icon-${toLine(key)}`, component)
 }
 
-app.use(router).use(ElementPlus).use(mUI)
+app
+.use(router)
+.use(ElementPlus)
+.use(mUI)
 app.mount('#app')
