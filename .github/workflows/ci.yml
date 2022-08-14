@@ -8,10 +8,6 @@ on:
     branches:
       - master
 
-stages:
-  - install
-  - build-and-deploy
-
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -20,6 +16,7 @@ jobs:
         with:
           version: 7.6.0
   build-and-deploy:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
