@@ -5,8 +5,11 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { toLine } from './utils'
-import mUI from './components/index'
+import mUI from '@lawzz/my-element'
+import '../node_modules/@lawzz/my-element/lib/style.css'
+// import mUI from './components/index'
 import './mock'
+// import chooseIcon from '@lawzz/my-element/lib/chooseIcon'
 
 const app = createApp(App)
 

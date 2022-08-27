@@ -1,15 +1,16 @@
 {
-  "name": "my-element",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@lawzz/my-element",
+  "private": false,
+  "version": "1.0.3",
   "files": [
     "lib"
   ],
   "main": "./lib/m-element-components.umd.js",
-  "module": "./lib/m-element-components.es.js",
+  "module": "./lib/m-element-components.mjs",
+  "style": "./lib/style.css",
   "exports": {
     ".": {
-      "import": "./lib/m-element-components.es.js",
+      "import": "./lib/m-element-components.mjs",
       "require": "./lib/m-element-components.umd.js"
     }
   },
@@ -24,7 +25,10 @@
     "commit-msg": "commitlint --config commitlint.config.js -e -V",
     "preinstall": "npx only-allow pnpm",
     "build:components": "node ./command/build.js",
-    "lib": "npm run build:components"
+    "lib": "npm run build:components",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.4",
@@ -44,6 +48,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@lawzz/my-element": "1.0.3",
     "@types/mockjs": "^1.0.6",
     "@types/node": "^18.7.2",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
@@ -61,6 +66,22 @@
     "sass-loader": "^13.0.2",
     "typescript": "^4.5.4",
     "vite": "^3.0.4",
+    "vitepress": "0.22.4",
     "vue-tsc": "^0.39.5"
-  }
+  },
+  "description": "This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lawzheng/my-element.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lawzheng/my-element/issues"
+  },
+  "homepage": "https://github.com/lawzheng/my-element#readme"
 }
