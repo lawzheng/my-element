@@ -1,1 +1,0 @@
-import{_ as o,c as n,a as r,o as c,b as t}from"./index.66cface2.js";const s={};function a(_,p){const e=t("m-progress");return c(),n("div",null,[r(e,{percentage:60,"is-animation":!0,type:"circle"})])}const m=o(s,[["render",a]]);export{m as default};
